@@ -23,7 +23,7 @@ return [
         `updated_by` int(11),
         `deleted_by` int(11),
         PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;",
+    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;",
 
     'seeder' => [
         'type' => 'array',
@@ -31,7 +31,7 @@ return [
             'first_name' => 'Toby',
             'last_name'  => 'Versteeg',
             'email'      => 'toby@codegorilla.nl',
-            'password'   => password_hash('Gorilla1!', PASSWORD_DEFAULT),
+            'password'   => password_hash('password', PASSWORD_DEFAULT),
             'role'       => 1,
             'country'    => 156,
             'city'       => 'Groningen',

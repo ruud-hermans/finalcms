@@ -14,7 +14,7 @@ return [
         `numcode` smallint(6) DEFAULT NULL,
         `phonecode` int(5) NOT NULL,
         PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;",
+      ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;",
 
     'seeder' => [
         'type' => 'sql',

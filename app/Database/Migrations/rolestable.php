@@ -15,7 +15,7 @@ return [
         `updated_by` int(11),
         `deleted_by` int(11),
         PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;",
+    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;",
 
     'seeder' => [
         'type' => 'array',
