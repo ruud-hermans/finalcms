@@ -5,3 +5,7 @@
 - npm install
 - save .env.example as .env
 - enter your MySQL credentials in your .env file
+
+## Database Migration
+- go to your project folder
+- type: php migrate.php -f -s (-f rewrites all tables, -s seeds the tables)

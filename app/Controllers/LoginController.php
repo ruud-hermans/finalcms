@@ -25,7 +25,7 @@ class LoginController
      */
     public function index()
     {
-        return View::render('login.view');
+        return View::render('credentials/login.view');
     }
 
     /**

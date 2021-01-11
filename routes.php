@@ -1,5 +1,10 @@
 <?php
 
+use App\Middleware\Auth;
+    
+$router->get('admin', 'App/Controllers/AdminController.php@index', Auth::class);
+$router->get('super-admin', 'App/Controllers/AdminController.php', Auth::class);
+
 $router->get('users', 'App/Controllers/UserController.php@index');
 $router->get('users/update', 'App/Controllers/UserController.php@update');
 $router->get('users/edit', 'App/Controllers/UserController.php@edit');

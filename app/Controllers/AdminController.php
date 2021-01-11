@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 use App\Libraries\View;
-class HomeController {
+
+class AdminController
+{
 
     public function index()
     {
-        return View::render($view = 'site/home.view');
+        return View::render('admin/main.view');
     }
 
 }

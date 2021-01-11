@@ -2,7 +2,7 @@
 
 namespace App\Middleware;
 
-class CheckLogin
+class Auth
 {
 
     public $isLoggedIn = false;
@@ -10,11 +10,14 @@ class CheckLogin
     public function __construct()
     {
         $this->isLoggedIn = isset($_SESSION) && isset($_SESSION['user']);
+
+        $this->redirect();
     }
 
-    public function redirectIfNotLoggedIn()
+    private function redirect()
     {
-        header('location: login');
+        if (!$this->isLoggedIn) {
+            header('location: login');
+        }
     }
-
 }
