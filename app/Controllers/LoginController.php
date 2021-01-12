@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\View;
 use App\Libraries\MySql;
+use App\Middleware\WhenLoggedIn;
 
 class LoginController
 {
@@ -25,6 +26,8 @@ class LoginController
      */
     public function index()
     {
+        new WhenLoggedIn;
+
         return View::render('credentials/login.view');
     }
 
@@ -85,12 +88,5 @@ class LoginController
             'last_name'  => $user['last_name'],
             'full_name'  => $user['first_name'] . (!empty($user['insertion']) ? $user['insertion'] : "") . " " . $user['last_name'],
         ];
-    }
-
-
-    public function tijd($time)
-    {
-        
-
     }
 }

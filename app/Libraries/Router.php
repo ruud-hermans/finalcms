@@ -24,29 +24,29 @@ class Router {
         if (array_key_exists($uri, $this->routes[$requestType])) {
             $routeData = $this->stripFunctionName($this->routes[$requestType][$uri]);
 
-            if ($routeData['middleware'] !== false) {
+            if (isset($routeData['middleware']) && $routeData['middleware'] !== false) {
                 new $routeData['middleware'];
             }
 
             return $routeData;
         }
 
-        throw new \Exception('No route defined for this route.');
+        throw new \Exception('No route defined for this route (' . $uri . " | " . print_r($this->routes[$requestType], true) . ')');
     }
 
-    public function get($uri, $controller, $middelware = false)
+    public function get($uri, $controller, $middleware = false)
     {
         $this->routes['GET'][$uri] = [
             'controller' => $controller,
-            'middleware' => $middelware
+            'middleware' => $middleware
         ];
     }
 
-    public function post($uri, $controller, $middelware = false)
+    public function post($uri, $controller, $middleware = false)
     {
         $this->routes['POST'][$uri] = [
             'controller' => $controller,
-            'middleware' => $middelware
+            'middleware' => $middleware
         ];
     }
 

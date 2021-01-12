@@ -1,6 +1,6 @@
 <?php
 
-use App\Middleware\Auth;
+use App\Middleware\WhenNotLoggedin as Auth;
     
 $router->get('admin', 'App/Controllers/AdminController.php@index', Auth::class);
 $router->get('super-admin', 'App/Controllers/AdminController.php', Auth::class);
