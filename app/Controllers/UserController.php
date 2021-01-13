@@ -10,11 +10,7 @@ class UserController extends Controller
 
     public function index()
     {
-        if (isset($_SESSION) && isset($_SESSION['user'])) {
-            echo "Yes!!!";
-        } else {
-            die('Not loged in');
-        }
+        
     }
 
     public function add()
@@ -26,6 +22,11 @@ class UserController extends Controller
      * Store a user record into the database
      */
     public function store()
+    {
+        
+    }
+
+    public function edit()
     {
         
     }

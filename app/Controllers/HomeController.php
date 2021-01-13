@@ -3,11 +3,12 @@
 namespace App\Controllers;
 
 use App\Libraries\View;
+use App\Models\UserModel;
 class HomeController {
 
     public function index()
     {
-        return View::render($view = 'site/home.view');
+        return View::render('site/home.view');
     }
 
 }

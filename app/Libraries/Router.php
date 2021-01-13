@@ -12,20 +12,33 @@ class Router {
 
     public static function load($file)
     {
+        // Initialize / Construct class
         $router = new static;
     
+        // File where routes are stored
         require $file;
 
         return $router;
     }
 
+    /**
+     * Get info about a certain route
+     * @param $uri (string) the route to check
+     * @param $requestType (string) GET or POST
+     */
     public function direct($uri, $requestType)
     {
         if (array_key_exists($uri, $this->routes[$requestType])) {
             $routeData = $this->stripFunctionName($this->routes[$requestType][$uri]);
 
             if (isset($routeData['middleware']) && $routeData['middleware'] !== false) {
-                new $routeData['middleware'];
+                foreach($routeData['middleware'] as $key => $middleWare)
+                {
+                    if (!is_string($key)) {
+                        throw new \Exception('This function expects an array.');
+                    }
+                    new $middleWare($uri, $key);
+                }
             }
 
             return $routeData;
@@ -34,7 +47,13 @@ class Router {
         throw new \Exception('No route defined for this route (' . $uri . " | " . print_r($this->routes[$requestType], true) . ')');
     }
 
-    public function get($uri, $controller, $middleware = false)
+    /**
+     * Get route
+     * @param $uri (string) the route
+     * @param $controller (string) which controller to use
+     * @param $middleWare (string) optional if you want to use any middleware
+     */
+    public function get($uri, $controller, array $middleware = [])
     {
         $this->routes['GET'][$uri] = [
             'controller' => $controller,
@@ -42,7 +61,13 @@ class Router {
         ];
     }
 
-    public function post($uri, $controller, $middleware = false)
+    /**
+     * Post route
+     * @param $uri (string) the route
+     * @param $controller (string) which controller to use
+     * @param $middleWare (string) optional if you want to use any middleware
+     */
+    public function post($uri, $controller, array $middleware = [])
     {
         $this->routes['POST'][$uri] = [
             'controller' => $controller,
@@ -50,6 +75,10 @@ class Router {
         ];
     }
 
+    /**
+     * Get route, function (@{functionName} and class from route)
+     * @param $uri (string) the route
+     */
     private function stripFunctionName($uri)
     {
         $class = str_ireplace('.php', '', $uri['controller']);

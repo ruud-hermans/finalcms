@@ -38,6 +38,19 @@ return [
             'birthday'   => '1970-05-17',
             'created'    => date('Y-m-d H:i:s'),
             'created_by' => 1,
+        ],
+        
+        [
+            'first_name' => 'Merel',
+            'last_name'  => 'Versteeg',
+            'email'      => 'merel@codegorilla.nl',
+            'password'   => password_hash('password', PASSWORD_DEFAULT),
+            'role'       => 2,
+            'country'    => 156,
+            'city'       => 'Groningen',
+            'birthday'   => '1996-03-19',
+            'created'    => date('Y-m-d H:i:s'),
+            'created_by' => 1,
         ]),
     ],
 ];

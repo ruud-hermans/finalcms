@@ -3,7 +3,7 @@
 use App\Libraries\Router;
 use App\Libraries\Request;
 
-require 'Core/bootstrap.php';
+require 'core/bootstrap.php';
 
 $route = Router::load('routes.php')->direct(Request::uri(), Request::method());
 

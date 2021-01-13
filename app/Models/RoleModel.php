@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-class ArtistModel extends Model
+class RoleModel extends Model
 {
+
     // Name of the table
-    protected $model = "artist";
+    protected $model = "user";
 
     // Max number of records when fetching all records from table
     protected $limit;
@@ -19,15 +20,21 @@ class ArtistModel extends Model
         'deleted_by',
     ];
 
+    /**
+     * Load class 'staticaly'
+     */
+    public static function load()
+    {
+        return new static;
+    }
+
     public function __construct()
     {
         parent::__construct(
             $this->model, 
             $this->limit, 
             $this->protectedFields
-        );
+        );   
     }
 
 }
-
-new ArtistModel;

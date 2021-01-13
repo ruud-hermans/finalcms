@@ -6,11 +6,11 @@
 
     <title><?= $_ENV['APP_NAME'] ?></title>
 
-    <link rel="icon" href="public/images/favicon.png" sizes="32x32">
+    <link rel="icon" href="/public/images/favicon.png" sizes="32x32">
 
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="public/css/main.css" />
+    <link rel="stylesheet" href="/public/css/main.css" />
     
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

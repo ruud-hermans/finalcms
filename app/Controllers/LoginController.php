@@ -82,7 +82,7 @@ class LoginController
     private function setUserSession($user) : void
     {
         $_SESSION['user'] = [
-            'uid'        => $user['id'],
+            'uid'        => (int)$user['id'],
             'first_name' => $user['first_name'],
             'insertion'  => $user['insertion'],
             'last_name'  => $user['last_name'],

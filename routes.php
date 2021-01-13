@@ -1,14 +1,25 @@
 <?php
 
-use App\Middleware\WhenNotLoggedin as Auth;
+use App\Middleware\WhenNotLoggedin;
+use App\Middleware\Permissions;
     
-$router->get('admin', 'App/Controllers/AdminController.php@index', Auth::class);
-$router->get('super-admin', 'App/Controllers/AdminController.php', Auth::class);
+$router->get('admin', 'App/Controllers/AdminController.php@index', [
+    'auth' => WhenNotLoggedin::class
+]);
 
-$router->get('users', 'App/Controllers/UserController.php@index');
-$router->get('users/update', 'App/Controllers/UserController.php@update');
-$router->get('users/edit', 'App/Controllers/UserController.php@edit');
-$router->post('users/store', 'App/Controllers/UserController.php');
+$router->get('user', 'App/Controllers/UserController.php@index', [
+    'show' => Permissions::class
+]);
+
+$router->get('user/edit', 'App/Controllers/UserController.php@edit', [
+    'update' => Permissions::class
+]);
+
+$router->post('user/update', 'App/Controllers/UserController.php@update', [
+    'update' => Permissions::class
+]);
+
+$router->post('user/store', 'App/Controllers/UserController.php');
 $router->get('me', 'App/Controllers/ProfileController.php@index');
 $router->get('artists', 'App/Controllers/ArtistController.php@index');
 $router->get('artists/detail', 'App/Controllers/ArtistController.php@show');

@@ -8,12 +8,12 @@ use PDO;
 class Model
 {
     // Name of the model (table)
-    private static $model;
+    private $model;
 
     // Max. records when fetching all records
-    private static $limit;
+    private $limit;
 
-    private static $protectedFields;
+    private $protectedFields;
 
     /**
      * Constructor
@@ -21,24 +21,24 @@ class Model
      */
     public function __construct($model, $limit = null, $protectedFields = null)
     {
-        self::$model = pluralize(4, $model);
-        self::$limit = $limit;
-        self::$protectedFields = $protectedFields;
+        $this->model = pluralize(4, $model);
+        $this->limit = $limit;
+        $this->protectedFields = $protectedFields;
     }
     
     /**
      * Fetching all records from table
      * @return array of objects
      */
-    public static function all(array $selectedFields = null)
+    public function all(array $selectedFields = null)
     {
         $fields = "*";
         
         if (!empty($selectedFields) && count($selectedFields) > 0) {
-            $fields = self::composeQuery($selectedFields);
+            $fields = $this->composeQuery($selectedFields);
         }
 
-        $sql = "SELECT " . $fields . " FROM " . self::$model . " WHERE deleted IS NULL" . (!empty(self::$limit) ? " LIMIT " . self::$limit : "");
+        $sql = "SELECT " . $fields . " FROM " . $this->model . " WHERE deleted IS NULL" . (!empty($this->limit) ? " LIMIT " . $this->limit : "");
 
         return MySql::query($sql)->fetchAll(PDO::FETCH_CLASS);
     }
@@ -47,20 +47,27 @@ class Model
      * Fetching one record based on the id
      * @return object
      */
-    public static function get(int $id, array $selectedFields = null)
+    public function get(int $id, array $selectedFields = null)
     {
         if ($id === 0) return null;
 
         $fields = "*";
 
         if (is_array($selectedFields) && count($selectedFields) > 0) {
-            $fields = self::composeQuery($selectedFields);
+            $fields = $this->composeQuery($selectedFields);
         }
 
-        $sql = "SELECT " . $fields .  " FROM " . self::$model . " WHERE id=" . $id . " AND deleted IS NULL";
+        $sql = "SELECT " . $fields .  " FROM " . $this->model . " WHERE id=" . $id . " AND deleted IS NULL";
         $res = MySql::query($sql)->fetchAll(PDO::FETCH_CLASS);
 
         return count($res) > 0 ? $res[0] : null;
+    }
+
+    public function findById($id)
+    {
+        $data = $this->get($id);
+        
+        return !is_null($data) ? $data : false;
     }
 
     /**
@@ -68,35 +75,35 @@ class Model
      * @param $data array
      * @return the ID of the new record
      */
-    public static function store(array $data)
+    public function store(array $data)
     {
-        return MySql::insert(self::removeIllegalFields($data), self::$model);
+        return MySql::insert($this->removeIllegalFields($data), $this->model);
     }
 
     /**
      * Updates a record to the model
      * @param $data array
      */
-    public static function update(array $data, int $id)
+    public function update(array $data, int $id)
     {
         if ($id === 0) return;
 
-        MySql::update(self::removeIllegalFields($data), self::$model, $id);
+        MySql::update($this->removeIllegalFields($data), $this->model, $id);
     }
 
     /**
      * Archives a record to the model
      * @param $data array
      */
-    public static function destroy(int $id)
+    public function destroy(int $id)
     {
-        Mysql::delete($id, self::$model);
+        Mysql::delete($id, $this->model);
     }
 
-    private static function removeIllegalFields(array $data)
+    private function removeIllegalFields(array $data)
     {
         foreach (@$data as $key => $val) {
-            if (in_array($key, self::$protectedFields)) {
+            if (in_array($key, $this->protectedFields)) {
                 unset($data[$key]);
             }
         }
@@ -104,7 +111,7 @@ class Model
         return $data;
     }
 
-    private static function composeQuery(array $fields)
+    private function composeQuery(array $fields)
     {
         $getFields = '';
 
