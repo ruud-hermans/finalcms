@@ -57,7 +57,7 @@ class UserModel extends Model
      * Returns users role
      * @param $user_id (int) the ID of the user
      */
-    public function role($user_id = null)
+    public function role($user_id = null, $returnRoleName = false)
     {
         $user_id = (int)$user_id;
 
@@ -67,7 +67,15 @@ class UserModel extends Model
 
         if ($user_id === 0) return false;
 
-        return (int)$this->get($user_id, ['role'])->role;
+        $userRole = (int)$this->get($user_id, ['role'])->role;
+
+        if (!$returnRoleName) {
+            return $userRole;
+        } else {
+            $role = new RoleModel;
+            
+            return $role->get($userRole)->name;
+        }
     }
 
     /**

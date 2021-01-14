@@ -1,5 +1,17 @@
 <?php
 
+/** --------------------------------------------------------------------------------------------------------
+ * This Middleware class protects your routes with permissions.
+ * It requires three tables and a user table (see Database/Migrations)
+ * 
+ * $route->get('admin', 'App\Controller\{ControllerName.php}, ['{CRUDaction}'] => Permissions::class)
+ *  CRUDaction: show, create, read, update and delete.
+ * Before a route is executed and a possible view is rendered, it first passes this
+ *  Middelware and checks if the requested CRUD action is allowed.
+ *  If not, it returns a 403 page
+ * ---------------------------------------------------------------------------------------------------------
+*/
+
 namespace App\Middleware;
 
 use App\Helpers\Helper;
@@ -18,6 +30,10 @@ class Permissions
     // Which CRUD action to check
     protected $crudAction;
 
+    protected $redirectWhenNotLoggedIn = 'login';
+
+    // Add name of role that has all permissions
+    protected $superUser = 'super-admin';
 
     public function __construct($route, $crudString)
     {
@@ -32,19 +48,31 @@ class Permissions
         }
     }
 
+    /**
+     * Check if the requeste permission is allowed
+     */
     private function checkPermission()
     {
+        // When no user is logged in, return false
         if (!$this->user) {
-            return false;
+            return View::redirect($this->redirectWhenNotLoggedIn);
         }
 
+        // Get permissions from user
         $user = new UserModel;
-
         $userPermissions = $user->permissions();
         
+        if ($user->role($this->user->id, true) === $this->superUser) {
+            return true;
+        }
+        
+        // Check if requested CRUD action is allowed
         return in_array($this->crudAction . '_' . $this->route, $userPermissions);
     }
 
+    /**
+     * Get user from session
+    */
     private function setUser()
     {
         $userId = Helper::getUserIdFromSession();

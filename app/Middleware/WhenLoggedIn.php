@@ -1,11 +1,22 @@
 <?php
 
+/**
+ * This Middelware checks if a user is logged in.
+ * If not: return to login page
+ * 
+ * $route->get('admin', 'App\Controller\{ControllerName.php}, ['auth] => WhenLoggedIn::class)
+ * Before a route is executed and a possible view is rendered, it first passes this Middelware
+ *  and checks if user is logged in
+ */
+
 namespace App\Middleware;
 
 use App\Libraries\View;
 
 class WhenLoggedIn
 {
+
+    protected $redirectTo = 'admin';
 
     /**
      * Check if a user is logged in by checking the session
@@ -27,7 +38,7 @@ class WhenLoggedIn
     private function redirect()
     {
         if ($this->isLoggedIn) {
-            View::redirect('admin');
+            View::redirect($this->redirectTo);
         }
     }
 

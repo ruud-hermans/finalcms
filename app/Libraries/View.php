@@ -29,7 +29,7 @@ class View
 
     public static function redirect($uri)
     {
-        header("Location: " . $uri);
+        header("Location: //" . $_SERVER['HTTP_HOST'] . '/' . ltrim($uri, '/'), true);
     }
 
 }

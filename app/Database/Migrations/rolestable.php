@@ -20,16 +20,23 @@ return [
     'seeder' => [
         'type' => 'array',
         'data' => array(
-        [
-            'name'       => 'admin',
-            'created'    => date('Y-m-d H:i:s'),
-            'created_by' => 1
-        ],
+            [
+                'name'       => 'super-admin',
+                'created'    => date('Y-m-d H:i:s'),
+                'created_by' => 1
+            ],
 
-        [
-            'name'       => 'user',
-            'created'    => date('Y-m-d H:i:s'),
-            'created_by' => 1
-        ]),
+            [
+                'name'       => 'admin',
+                'created'    => date('Y-m-d H:i:s'),
+                'created_by' => 1
+            ],
+
+            [
+                'name'       => 'user',
+                'created'    => date('Y-m-d H:i:s'),
+                'created_by' => 1
+            ]
+        ),
     ],
 ];

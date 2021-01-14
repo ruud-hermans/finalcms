@@ -1,8 +1,19 @@
 <?php
 
+/** --------------------------------------------------------------------------------------------------------
+ * Add your routes here.
+ * At this point, variables in a route are not supported like in Laravel: user/{user_id}/edit
+ *  I add this in a future version.
+ * 
+ * Protect your routes with one ore more Middleware classes, like WhenNotLoggedIn or Permissions.
+ *  See the classes for more information.
+ * Add Middleware in an associative array with a key, like the admin route
+ * ---------------------------------------------------------------------------------------------------------
+*/
+
 use App\Middleware\WhenNotLoggedin;
 use App\Middleware\Permissions;
-    
+
 $router->get('admin', 'App/Controllers/AdminController.php@index', [
     'auth' => WhenNotLoggedin::class
 ]);

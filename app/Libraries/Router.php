@@ -37,7 +37,8 @@ class Router {
                     if (!is_string($key)) {
                         throw new \Exception('This function expects an array.');
                     }
-                    new $middleWare($uri, $key);
+                    
+                    $m = new $middleWare($uri, $key);
                 }
             }
 
