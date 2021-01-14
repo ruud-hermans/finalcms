@@ -13,6 +13,6 @@
 ## What is it?
 A 'tiny' PHP & MySQL framework to build any app or website you want.
 Sure, Laravel or any other PHP framework is better and has more options, but this framework is more like a study project.
-Just check the code and see what it can do for you...
+It's a MVC framework which you can extend to what ever you want. Just check the code and see what it can do for you...
 
 Have fun!
