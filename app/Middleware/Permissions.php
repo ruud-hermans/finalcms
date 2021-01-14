@@ -41,6 +41,8 @@ class Permissions
         $this->crudAction = $crudString;
         $this->setUser();
 
+        // dd($this->route, $this->crudAction);
+
         if (!$this->checkPermission()) {
             return View::render('errors/403.view', [
                 'message' => $route . " | " . $crudString
@@ -65,7 +67,13 @@ class Permissions
         if ($user->role($this->user->id, true) === $this->superUser) {
             return true;
         }
-        
+    
+        // Check for routes with slashes and get rid of them
+        $firstSlashPositions = strpos($this->route, '/');
+        if ($firstSlashPositions !== false) {
+            $this->route = substr($this->route, 0, $firstSlashPositions);
+        }
+
         // Check if requested CRUD action is allowed
         return in_array($this->crudAction . '_' . $this->route, $userPermissions);
     }
@@ -81,6 +89,13 @@ class Permissions
             $user = new UserModel;
             $this->user = $user->findById($userId);
         }
+    }
+
+    
+
+    public static function ruud()
+    {
+
     }
 
 }

@@ -64,3 +64,10 @@ function pluralize($quantity, $singular, $plural=null)
             return $singular.'s';
     }
 }
+
+function exception_handler($exception)
+{
+    $message = $exception->getMessage();
+
+    require 'views/errors/exceptions.view.php';
+}

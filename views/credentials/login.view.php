@@ -1,10 +1,7 @@
 <div class="login-overlay">
     <div class="center-box login-form">
         <div class="mb-3">
-            <span class="guitar-icon">
-                <img src="../images/electric-guitar.svg">
-                <div><h3>Guitar(t)ists</h3></div>
-            </span>
+            <div><h3><?= $_ENV['APP_NAME'] ?></h3></div>
         </div>
 
         <form method="POST" name="frmLogin" onsubmit="return false;">

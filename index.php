@@ -1,5 +1,16 @@
 <?php
 
+require 'core/core.php';
+
+// Turn on all errors, warnings and notifications
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Throw all errors to a central error handler function
+// This function is in core/core.php file
+set_exception_handler('exception_handler');
+
 use App\Libraries\Router;
 use App\Libraries\Request;
 
@@ -8,7 +19,6 @@ require 'core/bootstrap.php';
 $route = Router::load('routes.php')->direct(Request::uri(), Request::method());
 
 require $route['uri'];
-
 $class = new $route['class'];
 
 $function = $route['function'];
@@ -17,10 +27,9 @@ if (!Request::ajax())
 {
     // Load the HTML header
     require 'views/layouts/head.view.php';
-    
+
     // Inject code from controller
     echo $class->$function();
-    
 
     // Close it with the bottom end </body> and </html> tags
     require 'views/layouts/bottom.view.php';

@@ -53,6 +53,8 @@ class MySql
     {
         $dbh = self::connect($dbHost = null, $dbName = null, $dbUser = null, $dbPass = null);
 
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         try {
             $stmt = $dbh->prepare($query);
             $stmt->execute($executeString);

@@ -38,7 +38,7 @@ class Router {
                         throw new \Exception('This function expects an array.');
                     }
                     
-                    $m = new $middleWare($uri, $key);
+                    new $middleWare($uri, $key);
                 }
             }
 

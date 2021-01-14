@@ -15,7 +15,7 @@ use App\Middleware\WhenNotLoggedin;
 use App\Middleware\Permissions;
 
 $router->get('admin', 'App/Controllers/AdminController.php@index', [
-    'auth' => WhenNotLoggedin::class
+    'auth' => WhenNotLoggedin::class,
 ]);
 
 $router->get('user', 'App/Controllers/UserController.php@index', [

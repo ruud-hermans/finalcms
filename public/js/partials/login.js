@@ -28,10 +28,8 @@ $(document).ready(function() {
                 const data = JSON.parse(result)
 
                 if (data.success) {
-                    document.cookie = "loged_in=1";
-                    localStorage.setItem('myCat', 'Tom');
                     $('form[name="frmLogin"] input[type="submit"]').prop('disabled', false)
-                    window.location.href = "/";
+                    window.location.href = data.redirect;
                 } else {
                     $('#login-message').html(data.message).show()
                 }

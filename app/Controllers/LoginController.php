@@ -8,6 +8,7 @@ use App\Middleware\WhenLoggedIn;
 
 class LoginController
 {
+    protected $redirectWhenLoggedIn = 'admin';
 
     public function __construct($function = null)
     {
@@ -26,6 +27,8 @@ class LoginController
      */
     public function index()
     {
+        // Middleare to check if user is allready logged in
+        // and if so redirect to route which is specified in MiddleWare
         new WhenLoggedIn;
 
         return View::render('credentials/login.view');
@@ -42,17 +45,14 @@ class LoginController
             $sql = "SELECT * FROM `users` WHERE `email`='" . $_REQUEST['email'] . "'";
             $res = MySql::query($sql)->fetch();
 
-            if ($res !== false)
-            {
-                if (password_verify($_REQUEST['password'], $res['password']))
-                {
+            if ($res !== false) {
+                if (password_verify($_REQUEST['password'], $res['password'])) {
                     $this->setUserSession($res);
 
                     return json_encode([
                         'success'  => true, 
                         'message'  => "Succesfull loged in.",
-                        'redirect' =>  "wouter",
-                        'food'  => 'Apple',
+                        'redirect' => $this->redirectWhenLoggedIn,
                     ]);
                 } else {
                     return json_encode([
@@ -73,7 +73,7 @@ class LoginController
     {
         session_destroy();
 
-        return View::redirect("home");
+        View::redirect("login");
     }
 
     /**
