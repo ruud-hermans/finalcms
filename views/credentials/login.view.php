@@ -5,6 +5,7 @@
         </div>
 
         <form method="POST" name="frmLogin" onsubmit="return false;">
+            <?= generateFormTokenHTML() ?>
             <div class="mb-3">
                 <label for="email" class="form-label">Your email address</label>
                 <input type="email" class="form-control" name="email" id="email" value="toby@codegorilla.nl" required />
@@ -14,8 +15,6 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="password" required />
             </div>
-
-            <input type="hidden" name="crf_token" value="<?= createToken() ?>">
 
             <div class="mb-3">
                 <div class="row">

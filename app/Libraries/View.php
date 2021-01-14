@@ -23,7 +23,7 @@ class View
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . $folder . $view . '.php')) {
             require $_SERVER['DOCUMENT_ROOT'] . $folder . $view . '.php';
         } else {
-            require $_SERVER['DOCUMENT_ROOT'] . 'errors/404.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/views/errors/404.view.php';
         }
     }
 
@@ -31,5 +31,4 @@ class View
     {
         header("Location: //" . $_SERVER['HTTP_HOST'] . '/' . ltrim($uri, '/'), true);
     }
-
 }

@@ -30,7 +30,10 @@ $router->post('user/update', 'App/Controllers/UserController.php@update', [
     'update' => Permissions::class
 ]);
 
-$router->post('user/store', 'App/Controllers/UserController.php');
+$router->post('user/store', 'App/Controllers/UserController.php@store', [
+    'store' => Permissions::class
+]);
+
 $router->get('me', 'App/Controllers/ProfileController.php@index');
 $router->get('artists', 'App/Controllers/ArtistController.php@index');
 $router->get('artists/detail', 'App/Controllers/ArtistController.php@show');

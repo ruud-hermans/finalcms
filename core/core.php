@@ -26,7 +26,7 @@ function dd()
 /**
  * Create an encrypted token and set the token var in the SESSION
  */
-function createToken() : void
+function createToken()
 {
     $token = bin2hex(openssl_random_pseudo_bytes(16));
 
@@ -34,6 +34,8 @@ function createToken() : void
     $options = 0;
 
     $_SESSION['token'] = openssl_encrypt($token, $_ENV['CIPHERING'], $_ENV['SECRET'], $options, $_ENV['ENCRYPTION_IV']);
+
+    return $_SESSION['token'];
 }
 
 /**
@@ -47,6 +49,17 @@ function decryptToken($token)
     $decryption = openssl_decrypt($token, $_ENV['CIPHERING'], $_ENV['SECRET'], $options, $_ENV['ENCRYPTION_IV']);
 
     return $token === $decryption;
+}
+
+/**
+ * Create a HTML hidden input element with a token
+ * When posting data the value of this hidden field 
+ * will be compared with the one in the session
+ * This comparission is done in the Request class (App\Libraies\Request)
+ */
+function generateFormTokenHTML()
+{
+    return "<input type=\"hidden\" value=\"" . createToken() . "\" name=\"f_token\">";
 }
 
 function pluralize($quantity, $singular, $plural=null)

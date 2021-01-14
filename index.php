@@ -1,11 +1,11 @@
 <?php
 
-require 'core/core.php';
-
-// Turn on all errors, warnings and notifications
+// Turn on all errors, warnings and notifications at the top of this app
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+require 'core/core.php';
 
 // Throw all errors to a central error handler function
 // This function is in core/core.php file
