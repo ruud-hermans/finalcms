@@ -16,3 +16,4 @@ Sure, Laravel or any other PHP framework is better and has more options, but thi
 It's a MVC framework which you can extend to what ever you want. Just check the code and see what it can do for you...
 
 Have fun!
+# finalcms
