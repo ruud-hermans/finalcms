@@ -40,8 +40,12 @@ class LoginController
      */
     public function login()
     {
+
+        dd($_REQUEST);
+
         if (isset($_REQUEST['email']) && isset($_REQUEST['password']))
         {
+            
             $sql = "SELECT * FROM `users` WHERE `email`='" . $_REQUEST['email'] . "'";
             $res = MySql::query($sql)->fetch();
 

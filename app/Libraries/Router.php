@@ -62,6 +62,11 @@ class Router {
         ];
     }
 
+
+
+
+
+
     /**
      * Post route
      * @param $uri (string) the route
@@ -75,6 +80,13 @@ class Router {
             'middleware' => $middleware
         ];
     }
+
+
+    
+
+
+
+
 
     /**
      * Get route, function (@{functionName} and class from route)

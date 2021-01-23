@@ -21,7 +21,7 @@ class Model
      */
     public function __construct($model, $limit = null, $protectedFields = null)
     {
-        $this->model = pluralize(4, $model);
+        $this->model = pluralize(1, $model);
         $this->limit = $limit;
         $this->protectedFields = $protectedFields;
     }

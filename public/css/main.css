@@ -15,6 +15,12 @@ a:visited {
 
 .error-message {
     color: white;
+    padding: 7px 10px;
+    background: #fff1f2;
+    border: #ffd5da 1px solid;
+    color: #d6001c;
+    border-radius: 4px;
+    margin: 30px 10px 10px 10px;
 }
 
 header {
@@ -50,15 +56,55 @@ header {
 }
 
 .login-form {
-    width: 35%;
-    background-color: rgba(0, 0, 0, .7);
-    padding: 50px;
-    border-radius: 10px;
-    color: white;
+    background: #ffffff;
+    border-spacing: initial;
+    margin: 15px auto;
+    word-break: break-word;
+    table-layout: auto;
+    line-height: 1.8em;
+    color: #333;
+    border-radius: 4px;
+    padding: 30px;
+    width: 380px;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+.form-head {
+    color: #191919;
+    font-weight: normal;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.field-column {
+    padding: 15px 10px;
+}
+
+
+.btnLogin {
+    padding: 13px;
+    background-color: #5d9cec;
+    color: #f5f7fa;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    border: #5791da 1px solid;
+    font-size: 1.1em;
+}
+
+.input-box {
+    padding: 13px;
+    border: #CCC 1px solid;
+    border-radius: 4px;
+    width: 100%;
+    
 }
 
 .login-overlay {
-    background: url('../images/bg-guitarist.jpg');
+    /* background: url('../images/bg-guitarist.jpg'); */
     background-size: cover;
     position: fixed;
     width: 100%;

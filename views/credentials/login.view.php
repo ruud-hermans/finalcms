@@ -1,7 +1,7 @@
-<div class="login-overlay">
-    <div class="center-box login-form">
+<div class="col-xs-6">
+    <div class="login-form">
         <div class="mb-3">
-            <div><h3><?= $_ENV['APP_NAME'] ?></h3></div>
+            <div><h3><?= $_ENV['APP_NAME'] ?> Login</h3></div>
         </div>
 
         <form method="POST" name="frmLogin" onsubmit="return false;">
@@ -29,5 +29,8 @@
         </form>
     </div>
 </div>
+
+
+
 
 <script src="js/partials/login.js"></script>

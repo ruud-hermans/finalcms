@@ -9,7 +9,7 @@ class View
         // Default view folder
         $folder = '/views/';
 
-        // Get rid of unwanted sladhes at begining and end of view file
+        // Get rid of unwanted slashes at begining and end of view file
         $view = ltrim($view, "/");
         $view = rtrim($view, "/");
 

@@ -1,16 +1,15 @@
-<div class="login-overlay">
-    <div class="center-box register-form">
+<div class="col-xs-6">
+    <div class="register-form">
         <div class="mb-3">
-            <span class="guitar-icon">
-                <img src="../images/electric-guitar.svg">
                 <div>
-                    <h3>Guitar(t)ists - Register</h3>
+                    <h3><?= $_ENV['APP_NAME'] ?> Register</h3>
                 </div>
             </span>
         </div>
 
         <div class="alert alert-danger" id="register-message" role="alert"></div>
-        <form method="POST" onsubmit="return false;" name="frmRegister" class="row g-3">
+        
+        <form method="POST" action="register" name="frmRegister" class="row g-3">
             <div class="col-md-6">
                 <label for="first_name" class="form-label">First name</label>
                 <input type="text" class="form-control" name="first_name" id="first_name" maxlength="80" required>

@@ -12,40 +12,46 @@
 */
 
 use App\Middleware\WhenNotLoggedin;
+use App\Middleware\WhenLoggedin;
 use App\Middleware\Permissions;
 
-$router->get('admin', 'App/Controllers/AdminController.php@index', [
+$router->get('admin', 'app/Controllers/AdminController.php@index', [
     'auth' => WhenNotLoggedin::class,
 ]);
 
-$router->get('user', 'App/Controllers/UserController.php@index', [
+$router->get('user', 'app/Controllers/UserController.php@index', [
     'show' => Permissions::class
 ]);
 
-$router->get('user/edit', 'App/Controllers/UserController.php@edit', [
+$router->get('user/edit', 'app/Controllers/UserController.php@edit', [
     'update' => Permissions::class
 ]);
 
-$router->post('user/update', 'App/Controllers/UserController.php@update', [
+$router->post('user/update', 'app/Controllers/UserController.php@update', [
     'update' => Permissions::class
 ]);
 
-$router->post('user/store', 'App/Controllers/UserController.php@store', [
+$router->post('user/store', 'app/Controllers/UserController.php@store', [
     'store' => Permissions::class
 ]);
 
-$router->get('me', 'App/Controllers/ProfileController.php@index');
-$router->get('artists', 'App/Controllers/ArtistController.php@index');
-$router->get('artists/detail', 'App/Controllers/ArtistController.php@show');
+$router->get('user2', 'app/Controllers/User2Controller.php@index');
 
-$router->get('', 'App/Controllers/HomeController.php@index');
-$router->get('home', 'App/Controllers/HomeController.php');
 
-$router->get('login', 'App/Controllers/LoginController.php@index');
-$router->get('logout', 'App/Controllers/LoginController.php@logout');
-$router->post('login/auth', 'App/Controllers/LoginController.php@login');
+$router->get('me', 'app/Controllers/ProfileController.php@index');
+$router->get('artists', 'app/Controllers/ArtistController.php@index');
+$router->get('artists/detail', 'app/Controllers/ArtistController.php@show');
 
-$router->get('contact', 'App/Controllers/ContactController.php@index');
+$router->get('', 'app/Controllers/HomeController.php@index');
+$router->get('home', 'app/Controllers/HomeController.php');
 
-$router->get('register', 'App/Controllers/RegisterController.php@index');
-$router->post('register', 'App/Controllers/RegisterController.php@store');
+$router->get('login', 'app/Controllers/LoginController.php@index');
+$router->get('logout', 'app/Controllers/LoginController.php@logout');
+$router->post('login/auth', 'app/Controllers/LoginController.php@login');
+
+$router->get('contact', 'app/Controllers/ContactController.php@index');
+
+$router->get('register', 'app/Controllers/RegisterController.php@index');
+$router->post('register', 'app/Controllers/RegisterController.php@store');
+
+// $router->get('register', 'app/Controllers/User2Controller.php@index');
