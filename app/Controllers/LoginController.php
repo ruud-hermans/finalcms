@@ -41,7 +41,7 @@ class LoginController
     public function login()
     {
 
-        dd($_REQUEST);
+        
 
         if (isset($_REQUEST['email']) && isset($_REQUEST['password']))
         {
@@ -55,7 +55,7 @@ class LoginController
 
                     return json_encode([
                         'success'  => true, 
-                        'message'  => "Succesfull loged in.",
+                        'message'  => "Succesfully logged in.",
                         'redirect' => $this->redirectWhenLoggedIn,
                     ]);
                 } else {

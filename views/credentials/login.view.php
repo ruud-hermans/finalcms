@@ -4,8 +4,8 @@
             <div><h3><?= $_ENV['APP_NAME'] ?> Login</h3></div>
         </div>
 
-        <form method="POST" name="frmLogin" onsubmit="return false;">
-            <?= generateFormTokenHTML() ?>
+        <form method="POST" name="frmLogin" action="login/auth">
+            <!-- generateFormTokenHTML() -->
             <div class="mb-3">
                 <label for="email" class="form-label">Your email address</label>
                 <input type="email" class="form-control" name="email" id="email" value="toby@codegorilla.nl" required />
