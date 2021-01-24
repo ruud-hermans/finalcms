@@ -20,7 +20,9 @@ class View
             $view = substr($view, $slashPos);
         }
 
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $folder . $view . '.php')) {
+        
+        if (file_exists(
+            $_SERVER['DOCUMENT_ROOT'] . $folder . $view . '.php')) {
             require $_SERVER['DOCUMENT_ROOT'] . $folder . $view . '.php';
         } else {
             require $_SERVER['DOCUMENT_ROOT'] . '/views/errors/404.view.php';

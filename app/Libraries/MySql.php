@@ -94,6 +94,8 @@ class MySql
         $questionMarks = rtrim($questionMarks, ',');
 
         $query .= $fields . ") VALUES (" . $questionMarks . ")";
+
+        
         
         self::query($query, $values);
 

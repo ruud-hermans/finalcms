@@ -28,6 +28,8 @@ class Router {
      */
     public function direct($uri, $requestType)
     {
+
+       
         if (array_key_exists($uri, $this->routes[$requestType])) {
             $routeData = $this->stripFunctionName($this->routes[$requestType][$uri]);
 
@@ -62,11 +64,6 @@ class Router {
         ];
     }
 
-
-
-
-
-
     /**
      * Post route
      * @param $uri (string) the route
@@ -75,17 +72,13 @@ class Router {
      */
     public function post($uri, $controller, array $middleware = [])
     {
+       
         $this->routes['POST'][$uri] = [
             'controller' => $controller,
             'middleware' => $middleware
         ];
+     ;
     }
-
-
-    
-
-
-
 
 
     /**

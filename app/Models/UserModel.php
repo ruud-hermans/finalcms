@@ -9,7 +9,7 @@ use PDO;
 class UserModel extends Model
 {
     // Name of the table
-    protected $model = "user";
+    protected $model = "users";
 
     // Max number of records when fetching all records from table
     protected $limit;
@@ -47,7 +47,10 @@ class UserModel extends Model
      */
     public static function exists($email, int $id = null)
     {
-        $query = "SELECT id FROM `users` WHERE `email`='" . $email . $id !== null ? " AND id<>" . $id : "";
+        $query = "SELECT id FROM `users` WHERE `email`=" . "'".$email."'" . ($id !== null ? " AND id<>" . $id : "");
+        
+      
+        
         $result = MySql::query($query)->fetch();
 
         return $result !== false;
@@ -107,4 +110,17 @@ class UserModel extends Model
             isset($_SESSION['user']) && 
             isset($_SESSION['user']['uid']) ? $_SESSION['user']['uid'] : null;
     }
+
+    public static function setUserSession($user) : void
+    {
+        $_SESSION['user'] = [
+            'uid'        => (int)$user['id'],
+            'first_name' => $user['first_name'],
+            'insertion'  => $user['insertion'],
+            'last_name'  => $user['last_name'],
+            'full_name'  => $user['first_name'] . (!empty($user['insertion']) ? $user['insertion'] : "") . " " . $user['last_name'],
+        ];
+    }
+
+
 }
