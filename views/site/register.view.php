@@ -10,6 +10,7 @@
         <div class="alert alert-danger" id="register-message" role="alert"></div>
         
         <form method="POST" action="register" name="frmRegister" class="row g-3">
+        <?= generateFormTokenHTML() ?>
             <div class="col-md-6">
                 <label for="first_name" class="form-label">First name</label>
                 <input type="text" class="form-control" name="first_name" id="first_name" maxlength="80" required>
@@ -34,7 +35,7 @@
                 <input type="password" class="form-control" name="password_2" id="password_2" maxlength="50" required>
             </div>
 
-            <input type="hidden" name="token" value="register">
+            <input type="hidden" name="crf_token" value="<?= createToken() ?>">
 
             <div class="col-md-12 mb-3">
                 <input type="submit" class="btn btn-dark" value="Submit">

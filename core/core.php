@@ -55,7 +55,7 @@ function decryptToken($token)
  * Create a HTML hidden input element with a token
  * When posting data the value of this hidden field 
  * will be compared with the one in the session
- * This comparission is done in the Request class (App\Libraies\Request)
+ * This comparission is done in the Request class (App\Libraries\Request)
  */
 function generateFormTokenHTML()
 {

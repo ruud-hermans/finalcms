@@ -116,7 +116,7 @@ class UserModel extends Model
         $_SESSION['user'] = [
             'uid'        => (int)$user['id'],
             'first_name' => $user['first_name'],
-            'insertion'  => $user['insertion'],
+            // 'insertion'  => $user['insertion'],
             'last_name'  => $user['last_name'],
             'full_name'  => $user['first_name'] . (!empty($user['insertion']) ? $user['insertion'] : "") . " " . $user['last_name'],
         ];

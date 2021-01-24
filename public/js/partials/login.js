@@ -19,7 +19,7 @@ $(document).ready(function() {
             $('#password').removeClass('input-error')
         })
 
-        // $('form[name="frmLogin"] input[type="submit"]').prop('disabled', true)
+        $('form[name="frmLogin"] input[type="submit"]').prop('disabled', true)
         $.ajax({
             url: 'login/auth',
             method: 'POST',
