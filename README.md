@@ -1,3 +1,8 @@
+Dit is een kleine CMS in wording, om PHP te leren, voor het beheren van visuele blogs van users.
+
+
+
+
 # Basic PHP Framework
 
 ## Installation
