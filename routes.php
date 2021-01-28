@@ -16,7 +16,7 @@ use App\Middleware\WhenLoggedin;
 use App\Middleware\Permissions;
 
 $router->get('admin', 'app/Controllers/AdminController.php@index', [
-    // 'auth' => WhenNotLoggedin::class,
+    'auth' => WhenNotLoggedin::class,
 ]);
 
 $router->get('user', 'app/Controllers/UserController.php@index', [
@@ -53,5 +53,3 @@ $router->get('contact', 'app/Controllers/ContactController.php@index');
 
 $router->get('register', 'app/Controllers/RegisterController.php@index');
 $router->post('register', 'app/Controllers/RegisterController.php@store');
-
-// $router->get('register', 'app/Controllers/User2Controller.php@index');

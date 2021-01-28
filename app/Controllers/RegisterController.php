@@ -21,9 +21,6 @@ class RegisterController
      */
     public function store()
     {
-
-        // var_dump($_POST);
-
         if (UserModel::exists($_REQUEST['email']) === true)
         {
             return json_encode([
